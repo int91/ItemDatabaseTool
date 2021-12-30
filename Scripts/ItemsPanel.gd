@@ -7,6 +7,9 @@ var itemSerializer = load("res://Scripts/ItemSerializer.gd").new()
 
 var selected_item : int = -1
 
+#TODO: Add a form of source control built in to exporting files (make this a setting too)
+#TODO: When selecting an Item Type hide/show text boxes according to that item's data
+
 func _ready():
 	itemSerializer.LoadItemData()
 	ListItems()
@@ -53,4 +56,7 @@ func _on_SaveDatabaseButton_pressed():
 func _on_RemoveItem_pressed():
 	if (selected_item != -1):
 		ItemDatabase.RemoveItemByObject(itemsList.get_item_metadata(selected_item))
+		selected_item = -1
+		itemsList.select(-1)
+		ListItems()
 	pass

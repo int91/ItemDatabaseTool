@@ -8,8 +8,6 @@ var itemClass = preload("res://Scripts/Item.gd")
 func _ready():
 	pass
 
-#TODO: Add a form of source control built in to exporting files (make this a setting too)
-
 func LoadItemData():
 	CreateExportDirectory()
 	var file = File.new()

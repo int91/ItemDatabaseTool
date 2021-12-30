@@ -5,6 +5,7 @@ var items = []
 #TODO: Add saving and loading of items into the array
 
 func _ready():
+	OS.set_window_title("c_onvulse - Database Tool")
 	pass
 
 func GetItemIdByObject(object: Node):
