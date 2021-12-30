@@ -1,0 +1,194 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://main.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/ItemAdder.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/ItemsPanel.gd" type="Script" id=3]
+
+[node name="root" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AddItemPanel" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -240.0
+margin_top = -244.0
+margin_right = 239.0
+margin_bottom = 249.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemType" type="MenuButton" parent="AddItemPanel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -128.0
+margin_top = 10.5
+margin_right = 128.0
+margin_bottom = 34.5
+text = "Item Type"
+
+[node name="NameEdit" type="LineEdit" parent="AddItemPanel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -128.0
+margin_top = 50.5
+margin_right = 128.0
+margin_bottom = 74.5
+placeholder_text = "Item Name"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoreEdit" type="TextEdit" parent="AddItemPanel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -128.0
+margin_top = 90.5
+margin_right = 128.0
+margin_bottom = 194.5
+
+[node name="WeightEdit" type="LineEdit" parent="AddItemPanel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -128.0
+margin_top = 210.5
+margin_right = 128.0
+margin_bottom = 234.5
+placeholder_text = "Item Weight"
+
+[node name="ValueEdit" type="LineEdit" parent="AddItemPanel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -128.0
+margin_top = 250.5
+margin_right = 128.0
+margin_bottom = 274.5
+placeholder_text = "Item  Value"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MaxStackEdit" type="LineEdit" parent="AddItemPanel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -127.5
+margin_top = 288.0
+margin_right = 128.5
+margin_bottom = 312.0
+placeholder_text = "Item MaxStack"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AddItemButton" type="Button" parent="AddItemPanel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -39.5
+margin_top = -45.0
+margin_right = 40.5
+margin_bottom = -25.0
+text = "Add Item"
+
+[node name="RemoveItemPanel" type="Panel" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -239.5
+margin_top = -246.5
+margin_right = 239.5
+margin_bottom = 246.5
+
+[node name="ItemsPanel" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -239.5
+margin_top = -246.5
+margin_right = 239.5
+margin_bottom = 246.5
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemList" type="ItemList" parent="ItemsPanel"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -143.0
+margin_top = -163.5
+margin_right = -6.0
+margin_bottom = 245.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemSearchEdit" type="LineEdit" parent="ItemsPanel"]
+margin_left = 343.5
+margin_top = 42.5
+margin_right = 471.5
+margin_bottom = 66.5
+placeholder_text = "Search"
+
+[node name="RefreshList" type="Button" parent="ItemsPanel"]
+margin_left = 343.5
+margin_top = 10.5
+margin_right = 471.5
+margin_bottom = 34.5
+text = "Refresh"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ItemsPanel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -175.5
+margin_top = -195.5
+margin_right = 81.5
+margin_bottom = 196.5
+
+[node name="SaveDatabaseButton" type="Button" parent="ItemsPanel"]
+margin_left = 15.5
+margin_top = 10.5
+margin_right = 119.5
+margin_bottom = 38.5
+text = "Save Database"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+margin_left = 24.0
+margin_top = 64.0
+margin_right = 120.0
+margin_bottom = 128.0
+text = "Add Item"
+
+[node name="Button2" type="Button" parent="."]
+margin_left = 24.0
+margin_top = 144.0
+margin_right = 120.0
+margin_bottom = 208.0
+text = "View Items"
+
+[connection signal="pressed" from="AddItemPanel/AddItemButton" to="AddItemPanel" method="_on_AddItemButton_pressed"]
+[connection signal="item_selected" from="ItemsPanel/ItemList" to="ItemsPanel" method="_on_ItemList_item_selected"]
+[connection signal="text_changed" from="ItemsPanel/ItemSearchEdit" to="ItemsPanel" method="_on_ItemSearchEdit_text_changed"]
+[connection signal="pressed" from="ItemsPanel/RefreshList" to="ItemsPanel" method="_on_RefreshList_pressed"]
+[connection signal="pressed" from="ItemsPanel/SaveDatabaseButton" to="ItemsPanel" method="_on_SaveDatabaseButton_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_Button2_pressed"]
