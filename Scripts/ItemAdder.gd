@@ -17,5 +17,4 @@ func _on_AddItemButton_pressed():
 	var i = load("res://Scripts/Item.gd").new()
 	i.SetData(nameEdit.text, loreEdit.text, float(weightEdit.text), int(valueEdit.text), int(valueEdit.text), null)
 	ItemDatabase.AddItem(i)
-	print(str(i))
 	pass

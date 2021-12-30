@@ -99,17 +99,6 @@ margin_right = 40.5
 margin_bottom = -25.0
 text = "Add Item"
 
-[node name="RemoveItemPanel" type="Panel" parent="."]
-visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -239.5
-margin_top = -246.5
-margin_right = 239.5
-margin_bottom = 246.5
-
 [node name="ItemsPanel" type="Panel" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -171,6 +160,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="RemoveItem" type="Button" parent="ItemsPanel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -104.0
+margin_top = -50.5
+margin_bottom = -23.5
+text = "Remove Item"
+
 [node name="Button" type="Button" parent="."]
 margin_left = 24.0
 margin_top = 64.0
@@ -190,5 +189,6 @@ text = "View Items"
 [connection signal="text_changed" from="ItemsPanel/ItemSearchEdit" to="ItemsPanel" method="_on_ItemSearchEdit_text_changed"]
 [connection signal="pressed" from="ItemsPanel/RefreshList" to="ItemsPanel" method="_on_RefreshList_pressed"]
 [connection signal="pressed" from="ItemsPanel/SaveDatabaseButton" to="ItemsPanel" method="_on_SaveDatabaseButton_pressed"]
+[connection signal="pressed" from="ItemsPanel/RemoveItem" to="ItemsPanel" method="_on_RemoveItem_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_Button2_pressed"]

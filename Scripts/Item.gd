@@ -1,37 +1,37 @@
 extends Node
 
-var _name
-var _lore
-var _weight
-var _value
-var _maxStack
+var _name: String
+var _lore: String
+var _weight: float
+var _value: int
+var _maxStack: int
 var _type
 
 func _ready():
 	pass
 
 func SetData(sname, lore, weight, value, maxStack, type):
-	_name = sname
-	_lore = lore
-	_weight = weight
-	_value = value
-	_maxStack = maxStack
-	_type = null
+	self._name = sname
+	self._lore = lore
+	self._weight = weight
+	self._value = value
+	self._maxStack = maxStack
+	self._type = null
 
 func GetName():
-	return _name
+	return self._name
 
 func GetLore():
-	return _lore
+	return self._lore
 
 func GetWeight():
-	return _weight
+	return self._weight
 
 func GetValue():
-	return _value
+	return self._value
 
 func GetType():
-	return _type
+	return self._type
 
 func GetMaxStack():
-	return _maxStack
+	return self._maxStack

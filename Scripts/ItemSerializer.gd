@@ -3,6 +3,8 @@ extends Node
 var path = ProjectSettings.globalize_path("res://")
 var directory = path+"/Exports/"
 
+var itemClass = preload("res://Scripts/Item.gd")
+
 func _ready():
 	pass
 
@@ -17,9 +19,7 @@ func LoadItemData():
 		file.close()
 		if (items != null):
 			for i in items:
-				var q = load("res://Scripts/Item.gd").new()
-				q.SetData(i.name, i.lore, i.weight, i.value, i.maxStack, i.type)
-				ItemDatabase.items.append(q)
+				AddItemToDatabase(i)
 
 func SaveItemData():
 	CreateExportDirectory()
@@ -42,3 +42,8 @@ func CreateExportDirectory():
 	var dir = Directory.new()
 	if (!dir.dir_exists(path+"/Exports/")):
 		dir.make_dir(directory)
+
+func AddItemToDatabase(i):
+	var q = itemClass.new()
+	q.SetData(i.name, i.lore, i.weight, i.value, i.maxStack, i.type)
+	ItemDatabase.AddItem(q)

@@ -1,28 +1,32 @@
 extends Panel
 
-onready var ItemsList = get_node("ItemList")
-onready var ItemData = get_node("RichTextLabel")
+onready var itemsList = get_node("ItemList")
+onready var itemData = get_node("RichTextLabel")
 
-onready var itemSerializer = load("res://Scripts/ItemSerializer.gd").new()
+var itemSerializer = load("res://Scripts/ItemSerializer.gd").new()
+
+var selected_item : int = -1
 
 func _ready():
 	itemSerializer.LoadItemData()
 	ListItems()
 
 func SetItemText(index):
-	var i = ItemDatabase.GetItemName(ItemsList.items[index])
-	ItemData.text = "Name: " + str(i.GetName()) + "\nLore: " + str(i.GetLore()) + "\nWeight: " + str(i.GetWeight()) + "\nValue: " + str(i.GetValue()) + "\nMax Stack: " + str(i.GetMaxStack())
+	var i = itemsList.get_item_metadata(index)
+	itemData.text = "Name: " + str(i.GetName()) + "\nLore: " + str(i.GetLore()) + "\nWeight: " + str(i.GetWeight()) + "\nValue: " + str(i.GetValue()) + "\nMax Stack: " + str(i.GetMaxStack())
 
 func ListItems():
-	ItemsList.clear()
-	for i in ItemDatabase.items:
-		ItemsList.add_item(i.GetName())
+	itemsList.clear()
+	for i in range(len(ItemDatabase.items)):
+		itemsList.add_item(ItemDatabase.items[i].GetName(), null, true)
+		itemsList.set_item_metadata(i, ItemDatabase.items[i])
 
 func SearchItem(item):
-	ItemsList.clear()
-	for i in ItemDatabase.items:
-		if (item in i.GetName()):
-			ItemsList.add_item(i.GetName())
+	itemsList.clear()
+	for i in range(len(ItemDatabase.items)):
+		if (item in ItemDatabase.items[i].GetName()):
+			itemsList.add_item(ItemDatabase.items[i].GetName(), null, true)
+			itemsList.set_item_metadata(i, ItemDatabase.items[i])
 
 func _on_ItemSearchEdit_text_changed(new_text):
 	if (new_text != ""):
@@ -32,6 +36,7 @@ func _on_ItemSearchEdit_text_changed(new_text):
 
 
 func _on_ItemList_item_selected(index):
+	selected_item = index
 	SetItemText(index)
 
 
@@ -42,4 +47,10 @@ func _on_RefreshList_pressed():
 
 func _on_SaveDatabaseButton_pressed():
 	itemSerializer.SaveItemData()
+	pass
+
+
+func _on_RemoveItem_pressed():
+	if (selected_item != -1):
+		ItemDatabase.RemoveItemByObject(itemsList.get_item_metadata(selected_item))
 	pass
