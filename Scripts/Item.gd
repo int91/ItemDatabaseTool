@@ -5,18 +5,18 @@ var _lore: String
 var _weight: float
 var _value: int
 var _maxStack: int
-var _type
+var _types
 
 func _ready():
 	pass
 
-func SetData(sname, lore, weight, value, maxStack, type):
+func SetData(sname: String, lore:String, weight: float, value: int, maxStack: int, types: Array):
 	self._name = sname
 	self._lore = lore
 	self._weight = weight
 	self._value = value
 	self._maxStack = maxStack
-	self._type = null
+	self._types = types
 
 func GetName():
 	return self._name
@@ -30,8 +30,8 @@ func GetWeight():
 func GetValue():
 	return self._value
 
-func GetType():
-	return self._type
+func GetTypes():
+	return self._types
 
 func GetMaxStack():
 	return self._maxStack

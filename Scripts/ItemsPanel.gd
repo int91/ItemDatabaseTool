@@ -16,7 +16,7 @@ func _ready():
 
 func SetItemText(index):
 	var i = itemsList.get_item_metadata(index)
-	itemData.text = "Name: " + str(i.GetName()) + "\nLore: " + str(i.GetLore()) + "\nWeight: " + str(i.GetWeight()) + "\nValue: " + str(i.GetValue()) + "\nMax Stack: " + str(i.GetMaxStack())
+	itemData.text = "Name: " + str(i.GetName()) + "\nLore: " + str(i.GetLore()) + "\nWeight: " + str(i.GetWeight()) + "\nValue: " + str(i.GetValue()) + "\nMax Stack: " + str(i.GetMaxStack()) + "\nTypes: " + str(i.GetTypes())
 
 func ListItems():
 	itemsList.clear()
@@ -57,6 +57,5 @@ func _on_RemoveItem_pressed():
 	if (selected_item != -1):
 		ItemDatabase.RemoveItemByObject(itemsList.get_item_metadata(selected_item))
 		selected_item = -1
-		itemsList.select(-1)
 		ListItems()
 	pass

@@ -26,22 +26,24 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ItemType" type="MenuButton" parent="AddItemPanel"]
+[node name="ItemTypes" type="ItemList" parent="AddItemPanel"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -128.0
-margin_top = 10.5
-margin_right = 128.0
-margin_bottom = 34.5
-text = "Item Type"
+margin_left = 128.5
+margin_top = 56.0
+margin_right = 232.5
+margin_bottom = 349.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="NameEdit" type="LineEdit" parent="AddItemPanel"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -128.0
-margin_top = 50.5
-margin_right = 128.0
-margin_bottom = 74.5
+margin_left = -151.5
+margin_top = 56.0
+margin_right = 104.5
+margin_bottom = 80.0
 placeholder_text = "Item Name"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -50,27 +52,27 @@ __meta__ = {
 [node name="LoreEdit" type="TextEdit" parent="AddItemPanel"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -128.0
-margin_top = 90.5
-margin_right = 128.0
-margin_bottom = 194.5
+margin_left = -151.5
+margin_top = 96.0
+margin_right = 104.5
+margin_bottom = 200.0
 
 [node name="WeightEdit" type="LineEdit" parent="AddItemPanel"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -128.0
-margin_top = 210.5
-margin_right = 128.0
-margin_bottom = 234.5
+margin_left = -151.5
+margin_top = 216.0
+margin_right = 104.5
+margin_bottom = 240.0
 placeholder_text = "Item Weight"
 
 [node name="ValueEdit" type="LineEdit" parent="AddItemPanel"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -128.0
-margin_top = 250.5
-margin_right = 128.0
-margin_bottom = 274.5
+margin_left = -151.5
+margin_top = 256.0
+margin_right = 104.5
+margin_bottom = 280.0
 placeholder_text = "Item  Value"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -79,11 +81,35 @@ __meta__ = {
 [node name="MaxStackEdit" type="LineEdit" parent="AddItemPanel"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -127.5
-margin_top = 288.0
-margin_right = 128.5
-margin_bottom = 312.0
+margin_left = -151.0
+margin_top = 293.5
+margin_right = 105.0
+margin_bottom = 317.5
 placeholder_text = "Item MaxStack"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DamageEdit" type="LineEdit" parent="AddItemPanel"]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -151.5
+margin_top = 328.0
+margin_right = 104.5
+margin_bottom = 352.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DurabilityEdit" type="LineEdit" parent="AddItemPanel"]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -151.5
+margin_top = 360.0
+margin_right = 104.5
+margin_bottom = 384.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -100,6 +126,7 @@ margin_bottom = -25.0
 text = "Add Item"
 
 [node name="ItemsPanel" type="Panel" parent="."]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -184,6 +211,7 @@ margin_right = 120.0
 margin_bottom = 208.0
 text = "View Items"
 
+[connection signal="item_selected" from="AddItemPanel/ItemTypes" to="AddItemPanel" method="_on_ItemTypes_item_selected"]
 [connection signal="pressed" from="AddItemPanel/AddItemButton" to="AddItemPanel" method="_on_AddItemButton_pressed"]
 [connection signal="item_selected" from="ItemsPanel/ItemList" to="ItemsPanel" method="_on_ItemList_item_selected"]
 [connection signal="text_changed" from="ItemsPanel/ItemSearchEdit" to="ItemsPanel" method="_on_ItemSearchEdit_text_changed"]

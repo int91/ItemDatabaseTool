@@ -31,7 +31,9 @@ func SaveItemData():
 			"weight":i.GetWeight(),
 			"value":i.GetValue(),
 			"maxStack":i.GetMaxStack(),
-			"type":i.GetType()}
+			"types":[]}
+		for q in i.GetTypes():
+			data.types.append(q.GetDictionary())
 		it.append(data)
 	file.store_line(to_json(it))
 	file.close()
@@ -43,5 +45,11 @@ func CreateExportDirectory():
 
 func AddItemToDatabase(i):
 	var q = itemClass.new()
-	q.SetData(i.name, i.lore, i.weight, i.value, i.maxStack, i.type)
+	q.SetData(i.name, i.lore, i.weight, i.value, i.maxStack, i.types)
+	for e in len(q.GetTypes()):
+		var ty = q.GetTypes()[e]
+		if (ty.name == "Pickaxe"):
+			var t = load("res://Scripts/Types/"+ty.name+".gd").new()
+			t.SetData(ty)
+			q.GetTypes()[e] = t
 	ItemDatabase.AddItem(q)
